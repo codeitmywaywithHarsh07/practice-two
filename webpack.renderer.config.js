@@ -1,9 +1,9 @@
+const path = require('path');
 const rules = require('./webpack.rules');
-// const plugins = require('./webpack.plugins');
 
 rules.push({
   test: /\.css$/,
-  use: ['style-loader', 'css-loader']
+  use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
 });
 
 module.exports = {
@@ -11,6 +11,11 @@ module.exports = {
     rules,
   },
   resolve: {
-    extensions: ['.js', '.jsx']
-  }
+    extensions: ['.js', '.jsx', '.ts', '.tsx', '.css'],
+  },
+  entry: './src/renderer.js',
+  output: {
+    filename: 'renderer.js',
+    path: path.resolve(__dirname, '.webpack/renderer'),
+  },
 };

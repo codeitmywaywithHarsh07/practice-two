@@ -1,16 +1,16 @@
 const path = require('path');
+const rules = require('./webpack.rules');
 
 module.exports = {
   entry: './src/main.js',
-  output: {
-    path: path.resolve(__dirname, '.webpack'),
-    filename: 'main.js'
-  },
-  target: 'electron-main',
   module: {
-    rules: require('./webpack.rules')
+    rules,
   },
   resolve: {
-    extensions: ['.js', '.jsx']
-  }
+    extensions: ['.js', '.jsx', '.ts', '.tsx', '.css'],
+  },
+  output: {
+    filename: 'main.js',
+    path: path.resolve(__dirname, '.webpack/main'),
+  },
 };
